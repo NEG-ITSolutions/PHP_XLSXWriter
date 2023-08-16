@@ -371,8 +371,8 @@ class XLSXWriter
 	{
 		$cell_name = self::xlsCell($row_number, $column_number);
 
-		if (!is_scalar($value) || $value==='') { //objects, array, empty
-			$file->write('<c r="'.$cell_name.'" s="'.$cell_style_idx.'"/>');
+		if (!is_scalar($value) || $value==='' || is_null($value)) { //objects, array, empty
+			return;
 		} elseif (is_string($value) && $value[0]=='='){
 			$file->write('<c r="'.$cell_name.'" s="'.$cell_style_idx.'" t="s"><f>'.self::xmlspecialchars($value).'</f></c>');
 		} elseif ($num_format_type=='n_date') {
