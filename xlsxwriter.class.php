@@ -400,7 +400,7 @@ class XLSXWriter
 		static $vertical_allowed = array('bottom','center','distributed','top');
 		$default_font = array('size'=>'10','name'=>'Arial','family'=>'2');
 		$fills = array('','');//2 placeholders for static xml later
-		$fonts = array('','','','');//4 placeholders for static xml later
+		$fonts = array();
 		$borders = array('');//1 placeholder for static xml later
 		$style_indexes = array();
 		foreach($this->cell_styles as $i=>$cell_style_string)
@@ -504,10 +504,6 @@ class XLSXWriter
 		$file->write('</numFmts>');
 
 		$file->write('<fonts count="'.(count($fonts)).'">');
-		$file->write(		'<font><name val="Arial"/><charset val="1"/><family val="2"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
 
 		foreach($fonts as $font) {
 			if (!empty($font)) { //fonts have 4 empty placeholders in array to offset the 4 static xml entries above
